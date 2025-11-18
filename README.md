@@ -1,1 +1,1 @@
-# PROKI-MINI
+# PROKI - MINI
