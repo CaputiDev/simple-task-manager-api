@@ -7,7 +7,7 @@ use Controller\LoginController;
 use Controller\RelatorioController;
 use Http\Request;
 use Http\Response;
-use Error\ApiException;
+use Error\APIException;
 
 // prepara a requisição 
 $uri = $_SERVER['REQUEST_URI'];
