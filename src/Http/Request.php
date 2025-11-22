@@ -21,14 +21,8 @@ class Request
         //separa apenas o path da URL
         $path = parse_url($uri, PHP_URL_PATH);
 
-        //cria uma expressão regular com um padrão que admite
-        //qualquer texto (para o início da URL) até encontrar /api/
-        //tudo o que vier depois será capturado pela subexpressão
-        //especificada por (.*) e referenciada por $1. 
-        $pattern = "/.*\/api\/(.*)$/";
+        $pattern = "/.*\/proki\/(.*)$/";
 
-        //por exemplo, para http://localhost/xyz/api/students/123 
-        //$route recebe students/123
         $route = preg_replace($pattern, "$1", $path);
 
         //cria um array com os segmentos de $route separados por /

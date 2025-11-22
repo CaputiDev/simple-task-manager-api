@@ -1,0 +1,15 @@
+RewriteEngine On
+
+# validacao para o Token JWT rodar no apache
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+
+# bloqueio de seguranca (Impede download do bd)
+<FilesMatch "\.(sqlite|db)$">
+    Require all denied
+</FilesMatch>
+
+# router
+# Só redireciona se o arquivo NÃO existir (!-f) e NÃO for diretório (!-d)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php [L]

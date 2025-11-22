@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:80/api
+@baseUrl = http://localhost:80/proki
 
 ##Rotas Protegidas (somente o proprio usuario ou o admin podem utilizar-las)
 

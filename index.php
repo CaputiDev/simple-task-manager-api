@@ -20,19 +20,19 @@ $request = new Request($uri, $method, $body);
 // router
 switch ($request->getResource()) {
     
-    // Rota: '/api/usuarios'
+    // Rota: '/proki/usuarios'
     case 'usuarios':
         $controller = new UserController();
         $controller->processRequest($request);
         break;
 
-    // Rota: '/api/login'
+    // Rota: '/proki/login'
     case 'login':
         $controller = new LoginController();
         $controller->processRequest($request);
         break;
 
-    // Rota: '/api/relatorios'
+    // Rota: '/proki/relatorios'
     case 'relatorios':
         $controller = new TaskController();
         $controller->processRequest($request);
@@ -41,13 +41,13 @@ switch ($request->getResource()) {
     // Rota raiz '/'
     case null:
         $endpoints = [
-            "POST /api/usuarios" => "Criar Conta",
-            "POST /api/login" => "Autenticar",
-            "GET /api/relatorios" => "Listar meus relatórios",
-            "POST /api/relatorios" => "Criar relatório",
-            "GET /api/relatorios/:id" => "Ver detalhes",
-            "PUT /api/relatorios/:id" => "Atualizar",
-            "DELETE /api/relatorios/:id" => "Excluir"
+            "POST /proki/usuarios" => "Criar Conta",
+            "POST /proki/login" => "Autenticar",
+            "GET /proki/relatorios" => "Listar todos relatórios",
+            "POST /proki/relatorios" => "Criar relatório",
+            "GET /proki/relatorios/:id" => "Ver relatorio especifico",
+            "PUT /proki/relatorios/:id" => "Atualizar relatorio",
+            "DELETE /proki/relatorios/:id" => "Excluir relatorio"
         ];
         Response::send(["autores" => "Thiago Caputi, Raul Lize Teixeira, Miguel Leonardo Lewandowiski ", "api" => "Proki-Mini", "versao" => "1.0.0", "endpoints" => $endpoints]);
         break;

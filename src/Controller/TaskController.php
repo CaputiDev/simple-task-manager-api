@@ -40,7 +40,6 @@ class TaskController
                     if($dado['usuario_id'] !== $usuarioId && $usuarioRole !== 'admin')throw new APIException("Acesso negado. Você não é o dono deste relatório.", 403);
                     Response::send($dado);
                 } else {
-                    // Passa os filtros (?cliente=X&data=Y) para o Service
                     $lista = $this->service->listar($usuarioId, $usuarioRole, $query);
                     Response::send($lista);
                 }
