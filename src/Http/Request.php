@@ -1,7 +1,4 @@
 <?php
-// Request Exemplo do Marcelo: 
-// https://github.com/marcelocairuga/api-simples/blob/main/src/Http/Request.php
-
 namespace Http;
 
 use Error\APIException;

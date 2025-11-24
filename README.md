@@ -21,21 +21,24 @@
 
 ```text
 proki-mini/
+├── assets/
+│   └── diagrama_bd.png # Diagrama ER do Banco de Dados
 ├── src/
-│   ├── Controller/    # Controladores (Entrada da API)
-│   ├── Service/       # Regras de Negócio e Validações
-│   ├── Repository/    # Acesso ao Banco de Dados (SQL)
-│   ├── Model/         # Definição dos Objetos (Entidades)
-│   ├── Http/          # Classes Request e Response
-│   ├── Utils/         # Utilitários (JWT, Config)
-│   └── database/      # Arquivo SQLite e script de Setup
-├── tools/
-│   ├── proki_insomnia.json # Collection para importação no Insomnia
-│   └── proki.har           # Log de requisições HTTP genérico
-├── .htaccess          # Configuração de rotas (Apache)
-├── index.php          # Front Controller (Roteador)
-├── *.http             # Arquivos de teste (REST Client VS Code)
-└── README.md          # Documentação
+│   ├── Controller/     # Controladores (Entrada da API)
+│   ├── Database/       # Conexão e Setup do SQLite
+│   ├── Error/          # Exceções personalizadas
+│   ├── Http/           # Classes Request e Response
+│   ├── Model/          # Definição dos Objetos (Entidades)
+│   ├── Repository/     # Acesso ao Banco de Dados (SQL)
+│   ├── Service/        # Regras de Negócio e Validações
+│   ├── Utils/          # Utilitários (JWT)
+│   └── config.php      # Configurações e Autoloader
+├── tools/              # Arquivos de exportação (Insomnia/HAR)
+├── .gitignore          # Arquivos ignorados pelo Git
+├── .htaccess           # Configuração de rotas (Apache)
+├── index.php           # Front Controller (Roteador)
+├── *.http              # Arquivos de teste (login, tasks, users)
+└── README.md           # Documentação
 ```
 
 ## Como rodar o projeto
@@ -55,6 +58,10 @@ php src/database/setup.php
 ```
 
 ---
+
+## Modelo do Banco de dados:
+
+![Diagrama ER do Proki](./assets/diagrama_db.png)
 
 ### Usuários de Teste (seed)
 
@@ -102,14 +109,14 @@ A API roda sob o prefixo `/proki`.
 
 ---
 
-### 👥 Usuários (Admin)
+### 👨‍💼 Usuários (Admin)
 
 | Método | Endpoint                      | Descrição                                              | Auth  |
 |--------|-------------------------------|--------------------------------------------------------|------ |
 | GET    | /proki/usuarios               | Lista todos os usuários cadastrados (ADMIN)            |  ✅   |
 | GET    | /proki/usuarios/{id}          | Ver perfil (o próprio ou Admin visualiza qualquer um)  |  ✅   |
 
-## 👥 Colaboradores
+## Colaboradores
 
 <div align="center">
 
