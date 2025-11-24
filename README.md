@@ -7,15 +7,12 @@
 * **Linguagem:** PHP 8+ (Puro, sem frameworks)
 **Banco de Dados:** SQLite
 * **Autenticação:** JWT (JSON Web Token)
-* **Servidor:** PHP Built-in Server / Apache
 
 ## Funcionalidades
 
 * **CRUD de Relatórios:** Criar, listar, atualizar e excluir relatórios de serviço.
 * **Autenticação JWT:** Proteção de rotas via Token Bearer.
 * **Isolamento de Dados:** Usuários comuns veem apenas os seus próprios relatórios.
-* **Modo Admin:** Administradores podem visualizar relatórios de todos os usuários e listar todos os cadastros.
-* **Filtros:** Listagem de relatórios com filtros por Data e Nome do Cliente.
 * **Segurança:** Senhas com hash (bcrypt) e proteção contra injeção SQL (PDO).
 
 ---
@@ -32,8 +29,12 @@ proki/
 │   ├── Http/          # Classes Request e Response
 │   ├── Utils/         # Utilitários (JWT, Config)
 │   └── database/      # Arquivo SQLite e script de Setup
+├── tools/
+│   ├── proki_insomnia.json # Collection para importação no Insomnia
+│   └── proki.har           # Log de requisições HTTP genérico
 ├── .htaccess          # Configuração de rotas (Apache)
 ├── index.php          # Front Controller (Roteador)
+├── *.http             # Arquivos de teste (REST Client VS Code)
 └── README.md          # Documentação
 ```
 
