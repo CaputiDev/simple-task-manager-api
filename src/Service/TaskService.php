@@ -62,7 +62,7 @@ class TaskService
         return $this->repository->create($task);
     }
 
-    public function atualizar($id, array $dados)
+    public function atualizar($id, array $dados, int $usuarioId, string $role)
     {
         // Verifica se existe antes de atualizar
         $existente = $this->buscarPorId($id);

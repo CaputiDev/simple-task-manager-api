@@ -41,7 +41,7 @@ Authorization: Bearer COLE_SEU_TOKEN_AQUI
 }
 
 ### ATUALIZAR por ID(PUT) somente dono da task e admin podem atualizar
-PUT {{baseUrl}}/relatorios/1
+PUT {{baseUrl}}/relatorios/2
 Content-Type: application/json
 Authorization: Bearer COLE_SEU_TOKEN_AQUI
 
