@@ -13,36 +13,36 @@ try {
 
     echo "Conectado ao banco\n";
 
-    // Limpeza (DEBUG)
-    $pdo->exec("DROP TABLE IF EXISTS relatorios;");
-    $pdo->exec("DROP TABLE IF EXISTS usuarios;");
+    $pdo->exec("SET FOREIGN_KEY_CHECKS = 0");
+    $pdo->exec("DROP TABLE IF EXISTS relatorios");
+    $pdo->exec("DROP TABLE IF EXISTS usuarios");
+    $pdo->exec("SET FOREIGN_KEY_CHECKS = 1");
 
-    // Criação das Tabelas
     $sqlUsuarios = "
         CREATE TABLE usuarios (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nome TEXT NOT NULL,
-            email TEXT NOT NULL UNIQUE,
-            senha_hash TEXT NOT NULL,
-            ativo INTEGER DEFAULT 1,
-            criado_em TEXT DEFAULT CURRENT_TIMESTAMP,
-            cargo TEXT DEFAULT 'user'
-        );
+            id INT AUTO_INCREMENT PRIMARY KEY, -- Mudou de INTEGER AUTOINCREMENT
+            nome VARCHAR(255) NOT NULL,        -- Mudou de TEXT
+            email VARCHAR(100) NOT NULL UNIQUE,
+            senha_hash VARCHAR(255) NOT NULL,
+            ativo TINYINT(1) DEFAULT 1,        -- MySQL não tem BOOLEAN nativo, usa TINYINT
+            cargo VARCHAR(50) DEFAULT 'user',
+            criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB;
     ";
 
     $sqlRelatorios = "
         CREATE TABLE relatorios (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            usuario_id INTEGER NOT NULL,
-            titulo TEXT NOT NULL,
-            cliente TEXT NOT NULL,
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            usuario_id INT NOT NULL,
+            titulo VARCHAR(255) NOT NULL,
+            cliente VARCHAR(255) NOT NULL,
             descricao TEXT,
-            data_realizacao TEXT NOT NULL,
-            valor REAL DEFAULT 0,
-            data_criacao TEXT DEFAULT CURRENT_TIMESTAMP,
-            data_atualizacao TEXT DEFAULT CURRENT_TIMESTAMP,
+            data_realizacao DATE NOT NULL,
+            valor DECIMAL(10, 2) DEFAULT 0,
+            data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            data_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Recurso legal do MySQL: atualiza sozinho
             FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
-        );
+        ) ENGINE=InnoDB;
     ";
 
     // Executa a criação

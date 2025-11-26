@@ -1,11 +1,11 @@
-# Proki-Mini
+# Proki-Mini / versão Apache e Mysql
 
 ---
 
 ## Tecnologias Utilizadas
 
 * **Linguagem:** PHP 8+ (Puro, sem frameworks)
-* **Banco de Dados:** SQLite
+* **Banco de Dados:** Mysql
 * **Autenticação:** JWT (JSON Web Token)
 
 ## Funcionalidades
@@ -60,13 +60,40 @@ proki-mini/
 
 ## Como executar o projeto
 
-1. Clonar o repositório
+### Rodando no Linux (Apache/MySql)
 
-```bash
-git clone https://github.com/CaputiDev/proki-mini
+Se deseja rodar o projeto em um servidor Linux (Ubuntu/Debian) com Apache e Mysql, siga os passos adicionais de permissão:
+
+### Copiar para o diretório Web
+
+```Bash
+sudo git clone [https://github.com/CaputiDev/proki-mini.git](https://github.com/CaputiDev/proki-mini.git) /var/www/html/proki
 ```
 
-2. Configurar o Banco de Dados
+### Coloque o projeto na pasta do Apache
+
+em /var/www/html/
+
+### Ajustar Permissões
+
+O Apache precisa de permissão para ler os arquivos e gravar no banco Mysql
+
+```Bash
+## Define o usuário atual e o grupo do Apache (www-data) como admins
+sudo chown -R $USER:www-data /var/www/html/proki
+```
+
+### Script de permissões Linux
+
+```Bash
+sudo chmod +x tools/deploy.sh
+sudo ./tools/deploy.sh
+sudo systemctl restart apache2
+```
+
+>Nota: Se estiver usando a versão com MySQL em rede, certifique-se de configurar o arquivo src/Database/Database.php com o IP correto do servidor.
+
+## Configurar o Banco de Dados
 
 Na raiz do projeto, execute o script de setup para criar as tabelas e popular com dados de teste:
 
@@ -88,14 +115,6 @@ O script de setup cria automaticamente os seguintes usuários:
 | 2 | Thiago | `thiago@proki.com`  | senha123| User  |
 | 3 | Miguel | `miguel@proki.com`  | senha123| User  |
 | 4 | Raul   | `raul@proki.com`    | senha123| User  |
-
-3. Iniciar o Servidor
-
-Na raiz do projeto, inicie o servidor (pode utilizar o embutido do PHP ou outro servidor web):
-
-```bash
-php -S localhost:80
-```
 
 ---
 

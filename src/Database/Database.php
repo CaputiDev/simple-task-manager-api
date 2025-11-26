@@ -4,37 +4,40 @@ namespace Database;
 
 use PDO;
 use PDOException;
-use Error\ApiException;
+use Error\APIException;
 
 class Database
 {
-	private static string $database = __DIR__ . '/database.sqlite';
+    // Configurações do MySQL
+    private static string $host = 'localhost'; 
+    private static string $db_name = 'proki';
+    private static string $username = 'proki'; 
+    private static string $password = 'senha123';
+    
+    private static ?PDO $connection = null;
 
-	// Instância única da conexão (Singleton)
-	private static ?PDO $connection = null;
+    public static function getConnection(): PDO
+    {
+        if (self::$connection === null) {
+            try {
+                // A String de Conexão (DSN) muda para MySQL
+                $dsn = "mysql:host=" . self::$host . ";dbname=" . self::$db_name . ";charset=utf8";
+                
+                self::$connection = new PDO($dsn, self::$username, self::$password);
 
-	// Método estático para obter a conexão
-	public static function getConnection(): PDO
-	{
-		// se ainda não existe uma conexão, cria uma
-		if (self::$connection === null) {
-			try {
-				// Cria a conexão uma única vez
-				$dsn = "sqlite:" . self::$database;
-				self::$connection = new PDO($dsn);
+				// exceções de erro
+                self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::$connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+                
+                // charset 
+                self::$connection->exec("set names utf8");
 
-				// Configurações da conexão para gerar exceções e retornar arrays associativos
-				self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				self::$connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                // Dica: Mostra o erro exato de conexão (IP errado, senha errada, etc)
+                throw new APIException("Erro de Conexão MySQL: " . $e->getMessage(), 500); 
+            }
+        }
 
-				// Ativa as chaves estrangeiras no SQLite
-				self::$connection->exec("PRAGMA foreign_keys = ON;");
-			} catch (PDOException $e) {
-				throw new APIException("Erro ao conectar ao banco de dados: " . $e->getMessage(), 500);	
-			}
-		}
-
-		// Retorna sempre a mesma instância
-		return self::$connection;
-	}
+        return self::$connection;
+    }
 }
