@@ -1,4 +1,4 @@
-# Proki-Mini
+# Simple Task Manager Api
 
 ---
 
@@ -37,7 +37,7 @@ A estrutura de diretórios e nomes de ficheiros segue rigorosamente a recomenda�
 ## Estrutura do Projeto
 
 ```text
-proki-mini/
+simple-task-manager-api/
 ├── assets/
 │   └── diagrama_bd.png # Diagrama ER do Banco de Dados
 ├── src/
@@ -60,14 +60,14 @@ proki-mini/
 
 ## Modelo de Classes
 
-![Diagrama de classes do Proki-mini](./assets/diagrama_classe.png)
+![Diagrama de classes](./assets/diagrama_classe.png)
 
 ## Como executar o projeto
 
 1. Clonar o repositório
 
 ```bash
-git clone https://github.com/CaputiDev/proki-mini
+git clone https://github.com/CaputiDev/simple-task-manager-api
 ```
 
 2. Configurar o Banco de Dados
@@ -80,7 +80,7 @@ php src/Database/setup.php
 
 ## Modelo ER do Banco de dados
 
-![Diagrama ER do Proki-mini](./assets/diagrama_db.png)
+![Diagrama ER](./assets/diagrama_db.png)
 
 ### Usuários de Teste (seed)
 
@@ -89,9 +89,9 @@ O script de setup cria automaticamente os seguintes usuários:
 | ID| Nome   | Email               |  Senha  | Cargo |
 |---|--------|---------------------|---------|-------|
 | 1 | Admin  | `admin@admin.com`   | admin   | Admin |
-| 2 | Thiago | `thiago@proki.com`  | senha123| User  |
-| 3 | Miguel | `miguel@proki.com`  | senha123| User  |
-| 4 | Raul   | `raul@proki.com`    | senha123| User  |
+| 2 | Thiago | `thiago@email.com`  | senha123| User  |
+| 3 | Miguel | `miguel@email.com`  | senha123| User  |
+| 4 | Raul   | `raul@email.com`    | senha123| User  |
 
 3. Iniciar o Servidor
 
@@ -105,26 +105,26 @@ php -S localhost:80
 
 ## Rotas da API
 
-A API roda sob o prefixo `/proki`.
+A API roda sob o prefixo `/api`.
 
->💡Dica: Você pode usar os arquivos http na raiz do projeto, com a extensão [Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) do VScode ou, se preferir, utilize o arquivo [proki_insomnia.json](./tools/proki_insomnia.json) no insomnia ou o [proki.har](./tools/proki.har) em qualquer outro programa para fazer as requisições.
+>💡Dica: Você pode usar os arquivos http na raiz do projeto, com a extensão [Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) do VScode ou, se preferir, utilize o arquivo [api_insomnia.json](./tools/api_insomnia.json) no insomnia ou o [api.har](./tools/api.har) em qualquer outro programa para fazer as requisições.
 
 ### 🔐 Autenticação
 
 | Método | Endpoint        | Descrição                                 |
 |--------|-----------------|-------------------------------------------|
-| POST   | /proki/usuarios | Cria uma nova conta de usuário            |
-| POST   | /proki/login    | Realiza login e retorna o Token JWT       |
+| POST   | /api/usuarios | Cria uma nova conta de usuário            |
+| POST   | /api/login    | Realiza login e retorna o Token JWT       |
 
 ### 📄 Relatórios
 
 | Método | Endpoint                      | Descrição                                         | Auth |
 |--------|-------------------------------|---------------------------------------------------|------|
-| GET    | /proki/relatorios             | Lista relatórios (seus ou todos se for Admin)     | ✅   |
-| GET    | /proki/relatorios/{id}        | Lista relatorio específico                        | ✅   |
-| POST   | /proki/relatorios             | Cria um novo relatório                            | ✅   |
-| PUT    | /proki/relatorios/{id}        | Atualiza um relatório                             | ✅   |
-| DELETE | /proki/relatorios/{id}        | Exclui um relatório                               | ✅   |
+| GET    | /api/relatorios             | Lista relatórios (seus ou todos se for Admin)     | ✅   |
+| GET    | /api/relatorios/{id}        | Lista relatorio específico                        | ✅   |
+| POST   | /api/relatorios             | Cria um novo relatório                            | ✅   |
+| PUT    | /api/relatorios/{id}        | Atualiza um relatório                             | ✅   |
+| DELETE | /api/relatorios/{id}        | Exclui um relatório                               | ✅   |
 
 ---
 
@@ -132,8 +132,8 @@ A API roda sob o prefixo `/proki`.
 
 | Método | Endpoint                      | Descrição                                              | Auth  |
 |--------|-------------------------------|--------------------------------------------------------|------ |
-| GET    | /proki/usuarios               | Lista todos os usuários cadastrados (ADMIN)            |  ✅   |
-| GET    | /proki/usuarios/{id}          | Ver perfil (o próprio ou Admin visualiza qualquer um)  |  ✅   |
+| GET    | /api/usuarios               | Lista todos os usuários cadastrados (ADMIN)            |  ✅   |
+| GET    | /api/usuarios/{id}          | Ver perfil (o próprio ou Admin visualiza qualquer um)  |  ✅   |
 
 ## Colaboradores
 
