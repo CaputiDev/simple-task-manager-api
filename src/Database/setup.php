@@ -59,9 +59,9 @@ try {
     
     $usuariosSeed = [
         ['nome' => 'admin', 'email' => 'admin@admin.com', 'senha_hash' => $senhaAdmin, 'cargo' => 'admin'],
-        ['nome' => 'Thiago', 'email' => 'thiago@proki.com', 'senha_hash' => $senhaPadrao, 'cargo' => 'user'],
-        ['nome' => 'Miguel', 'email' => 'miguel@proki.com', 'senha_hash' => $senhaPadrao, 'cargo' => 'user'],
-        ['nome' => 'Raul', 'email' => 'raul@proki.com', 'senha_hash' => $senhaPadrao, 'cargo' => 'user'],
+        ['nome' => 'Thiago', 'email' => 'thiago@email.com', 'senha_hash' => $senhaPadrao, 'cargo' => 'user'],
+        ['nome' => 'Miguel', 'email' => 'miguel@email.com', 'senha_hash' => $senhaPadrao, 'cargo' => 'user'],
+        ['nome' => 'Raul', 'email' => 'raul@email.com', 'senha_hash' => $senhaPadrao, 'cargo' => 'user'],
     ];
 
     $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha_hash, cargo) VALUES (:nome, :email, :senha_hash, :cargo)");

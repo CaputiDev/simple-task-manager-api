@@ -20,19 +20,19 @@ $request = new Request($uri, $method, $body);
 // router
 switch ($request->getResource()) {
     
-    // Rota: '/proki/usuarios'
+    // Rota: '/api/usuarios'
     case 'usuarios':
         $controller = new UserController();
         $controller->processRequest($request);
         break;
 
-    // Rota: '/proki/login'
+    // Rota: '/api/login'
     case 'login':
         $controller = new LoginController();
         $controller->processRequest($request);
         break;
 
-    // Rota: '/proki/relatorios'
+    // Rota: '/api/relatorios'
     case 'relatorios':
         $controller = new TaskController();
         $controller->processRequest($request);
@@ -41,16 +41,16 @@ switch ($request->getResource()) {
     // Rota raiz '/'
     case null:
         $endpoints = [
-            "POST /proki/usuarios" => "Criar Conta",
-            "POST /proki/login" => "Autenticar",
-            "POST /proki/relatorios" => "Criar relatório",
-            "GET /proki/relatorios/:id" => "Ver relatorio especifico",
-            "PUT /proki/relatorios/:id" => "Atualizar relatorio",
-            "DELETE /proki/relatorios/:id" => "Excluir relatorio",
-            "GET(admin) /proki/relatorios" => "Listar todos relatórios",
-            "GET(admin) /proki/usuarios" => "Listar todos usuarios",
+            "POST /api/usuarios" => "Criar Conta",
+            "POST /api/login" => "Autenticar",
+            "POST /api/relatorios" => "Criar relatório",
+            "GET /api/relatorios/:id" => "Ver relatorio especifico",
+            "PUT /api/relatorios/:id" => "Atualizar relatorio",
+            "DELETE /api/relatorios/:id" => "Excluir relatorio",
+            "GET(admin) /api/relatorios" => "Listar todos relatórios",
+            "GET(admin) /api/usuarios" => "Listar todos usuarios",
         ];
-        Response::send(["autores" => "Thiago Caputi, Raul Lize Teixeira, Miguel Leonardo Lewandowiski ", "api" => "Proki-Mini", "versao" => "1.0.0", "endpoints" => $endpoints]);
+        Response::send(["autores" => "Thiago Caputi, Raul Lize Teixeira, Miguel Leonardo Lewandowiski ", "api" => "api", "versao" => "1.0.0", "endpoints" => $endpoints]);
         break;
 
     // Qualquer outra rota

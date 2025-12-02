@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:80/proki
+@baseUrl = http://localhost:80/api
 
 ### CRIAÇÃO DE USUÁRIO (SIGN-UP)
 

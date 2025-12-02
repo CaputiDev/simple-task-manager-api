@@ -18,7 +18,7 @@ class Request
         //separa apenas o path da URL
         $path = parse_url($uri, PHP_URL_PATH);
 
-        $pattern = "/.*\/proki\/(.*)$/";
+        $pattern = "/.*\/api\/(.*)$/";
 
         $route = preg_replace($pattern, "$1", $path);
 
