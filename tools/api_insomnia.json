@@ -98,6 +98,25 @@
       "_type": "request"
     },
     {
+      "_id": "req_export_users_csv",
+      "parentId": "fld_auth",
+      "modified": 1700000000000,
+      "created": 1700000000000,
+      "url": "{{ base_url }}/usuarios?format=csv",
+      "name": "5. Exportar Usuários para CSV (Admin)",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ token }}"
+      },
+      "metaSortKey": -60,
+      "isPrivate": false,
+      "_type": "request"
+    },
+    {
       "_id": "req_list_tasks",
       "parentId": "fld_reports",
       "modified": 1700000000000,
@@ -212,6 +231,25 @@
         "token": "{{ token }}"
       },
       "metaSortKey": -60,
+      "isPrivate": false,
+      "_type": "request"
+    },
+    {
+      "_id": "req_export_tasks_csv",
+      "parentId": "fld_reports",
+      "modified": 1700000000000,
+      "created": 1700000000000,
+      "url": "{{ base_url }}/relatorios?format=csv",
+      "name": "6. Exportar Relatórios para CSV",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ token }}"
+      },
+      "metaSortKey": -50,
       "isPrivate": false,
       "_type": "request"
     },
