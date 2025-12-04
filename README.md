@@ -14,6 +14,9 @@
 * **Autenticação JWT:** Proteção de rotas via Token Bearer.
 * **Isolamento de Dados:** Usuários comuns veem apenas os seus próprios relatórios.
 * **Segurança:** Senhas com hash (bcrypt) e proteção contra injeção SQL (PDO).
+* **Exportação para CSV:**
+    * **Usuários (Admin):** Administradores podem exportar a lista completa de usuários para um arquivo CSV.
+    * **Relatórios:** Usuários autenticados podem exportar seus relatórios para um arquivo CSV.
 
 ## Arquitetura e Padrões do Projeto
 
@@ -105,35 +108,30 @@ php -S localhost:80
 
 ## Rotas da API
 
-A API roda sob o prefixo `/api`.
+Todas as rotas, exceto `/login`, são protegidas e exigem um `Bearer Token` no cabeçalho `Authorization`.
 
->💡Dica: Você pode usar os arquivos http na raiz do projeto, com a extensão [Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) do VScode ou, se preferir, utilize o arquivo [api_insomnia.json](./tools/api_insomnia.json) no insomnia ou o [api.har](./tools/api.har) em qualquer outro programa para fazer as requisições.
+### Autenticação
 
-### 🔐 Autenticação
+| Método | Rota    | Descrição                  |
+|--------|---------|----------------------------|
+| `POST` | /login  | Autentica um usuário e retorna um token JWT. |
 
-| Método | Endpoint        | Descrição                                 |
-|--------|-----------------|-------------------------------------------|
-| POST   | /api/usuarios | Cria uma nova conta de usuário            |
-| POST   | /api/login    | Realiza login e retorna o Token JWT       |
+### Usuários
 
-### 📄 Relatórios
+| Método | Rota         | Descrição                                   |
+|--------|--------------|---------------------------------------------|
+| `GET`  | /usuarios    | **(Admin)** Lista todos os usuários.         |
+| `GET`  | /usuarios?format=csv | **(Admin)** Exporta a lista de usuários para CSV. |
 
-| Método | Endpoint                      | Descrição                                         | Auth |
-|--------|-------------------------------|---------------------------------------------------|------|
-| GET    | /api/relatorios             | Lista relatórios (seus ou todos se for Admin)     | ✅   |
-| GET    | /api/relatorios/{id}        | Lista relatorio específico                        | ✅   |
-| POST   | /api/relatorios             | Cria um novo relatório                            | ✅   |
-| PUT    | /api/relatorios/{id}        | Atualiza um relatório                             | ✅   |
-| DELETE | /api/relatorios/{id}        | Exclui um relatório                               | ✅   |
+### Relatórios (Tasks)
 
----
-
-### 👨‍💼 Usuários (Admin)
-
-| Método | Endpoint                      | Descrição                                              | Auth  |
-|--------|-------------------------------|--------------------------------------------------------|------ |
-| GET    | /api/usuarios               | Lista todos os usuários cadastrados (ADMIN)            |  ✅   |
-| GET    | /api/usuarios/{id}          | Ver perfil (o próprio ou Admin visualiza qualquer um)  |  ✅   |
+| Método | Rota         | Descrição                                      |
+|--------|--------------|------------------------------------------------|
+| `GET`  | /relatorios  | Lista os relatórios do usuário autenticado.    |
+| `GET`  | /relatorios?format=csv | Exporta os relatórios do usuário para CSV.     |
+| `POST` | /relatorios  | Cria um novo relatório.                        |
+| `PUT`  | /relatorios/{id} | Atualiza um relatório existente.               |
+| `DELETE`| /relatorios/{id} | Deleta um relatório.                           |
 
 ## Colaboradores
 
