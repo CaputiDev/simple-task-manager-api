@@ -43,3 +43,7 @@ Authorization: Bearer COLE_SEU_TOKEN_AQUI
 GET {{baseUrl}}/usuarios
 Content-Type: application/json
 Authorization: Bearer COLE_SEU_TOKEN_AQUI
+
+### Exportar Todos para CSV (rota exclusiva de admin)
+GET {{baseUrl}}/usuarios?format=csv
+Authorization: Bearer COLE_SEU_TOKEN_AQUI

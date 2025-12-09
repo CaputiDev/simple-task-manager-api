@@ -7,6 +7,10 @@ GET {{baseUrl}}/relatorios
 Content-Type: application/json
 Authorization: Bearer COLE_SEU_TOKEN_AQUI
 
+### EXPORTAR PARA CSV (Exporta relatórios listados para CSV)
+GET {{baseUrl}}/relatorios?format=csv
+Authorization: Bearer COLE_SEU_TOKEN_AQUI
+
 ### BUSCAR POR ID somente admin e dono da task podem ver
 GET {{baseUrl}}/relatorios/2
 Content-Type: application/json
